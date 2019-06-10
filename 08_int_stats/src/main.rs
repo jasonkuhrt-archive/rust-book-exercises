@@ -15,11 +15,10 @@ fn main() {
     let mut ints: Vec<u32>;
     loop {
         ints = parse_ints(&get_input());
-        if ints.len() == 0 {
-            println!("Please enter at least one integer");
-            continue;
-        } else {
+        if ints.len() > 0 {
             break;
+        } else {
+            println!("Please enter at least one integer");
         }
     }
 
@@ -34,7 +33,7 @@ fn main() {
     let mut counts: HashMap<u32, u32> = HashMap::new();
 
     for int in ints {
-        counts.entry(int).and_modify(|int| *int += 1).or_insert(0);
+        counts.entry(int).and_modify(|int| *int += 1).or_insert(1);
     }
 
     let mut mode = (0, 0);
